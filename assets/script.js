@@ -1,3 +1,5 @@
+var cityLat = "";
+var cityLon = "";
 $(document).ready(function () {
 
 $("#weather-btn").on("click", function(event) {
@@ -8,7 +10,7 @@ $("#weather-btn").on("click", function(event) {
 
     console.log(citySearch);
     currentWeather(citySearch);
-    forecast(citySearch);
+    // forecast(citySearch);
 
 })
 
@@ -27,25 +29,23 @@ function currentWeather(cityName) {
         var temp =data.main.temp;
         var humidity = data.main.humidity;
         var wind = data.wind;
-        var tempOutput = $("<p>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0");
-        var humOutput = $("<p>").text("Humidity: " + humidity);
+        cityLat = data.coord.lat;
+        cityLon = data.coord.lon;
+        console.log(cityLon);
+        console.log(cityLat);
+        var tempOutput = $("<p>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0" + "F");
+        var humOutput = $("<p>").text("Humidity: " + humidity + "%");
         var windOutput = $("<p>").text("Wind: " + wind.speed + "mph at " + wind.deg + " degrees.");
-        //response.daily[i].temp.max - 273.15) * 9/5 + 32) + "\xB0");
-
-        // var temp = $("<p>").text("Current Temperature: " + temp);
-        // var humidity = $("<p>").text("Current Humidity: " + humidity);
-        // var wind = $("<p>").text("Current Wind Speed: " + wind);
         weatherDiv.append(tempOutput);
         weatherDiv.append(humOutput);
         weatherDiv.append(windOutput);
 
-        $("#current-weather").prepend(weatherDiv);
+        
 
-    })
-}
+//     })
+// }
 
-function forecast(cityName) {
-
+// function forecast(cityName) {
     $.ajax({
         method: "GET",
         url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "&exclude=current,minutely,hourly,alerts&appid=b5f7425c4176b3da6c51c8c289b206a6"
@@ -54,73 +54,27 @@ function forecast(cityName) {
     .then(function(forecastData){
         console.log(forecastData);
         $("#forecast").empty();
-        
-        // for (i=0; i<4; i++) {
-        
-        // var forecastDiv = $("<div>");
-        // var date = forecastData.list[i].dt_txt;
-        // var icon = forecastData.list[i].weather.icon;
-        // var forecastTemp = forecastData.list[i].main.temp;
-        // var forecastHum = forecastData.list[i].main.humidity;
-        // var dateOutput = $("<p>").text(date);
-        // var iconOutput = $("<p>").text(icon);
-        // var forecastTempOutput = $("<p>").text("Temp: " + Math.floor((forecastTemp - 273.15) * 9/5 + 32) + "\xB0");
-        // var forecastHumOutput = $("<p>").text("Humidity: " + forecastHum);
 
-        // forecastDiv.append(dateOutput);
-        // forecastDiv.append(iconOutput);
-        // forecastDiv.append(forecastTempOutput);
-        // forecastDiv.append(forecastHumOutput);
+        for (i=0; i < 5; i++) {
+        var forecastDiv = $("<div>");
+        var dt = forecastData.daily[i].dt;
+        var forecastTemp =forecastData.daily[i].temp.day;
+        var forecastHum = forecastData.daily[i].humidity;
+            console.log("time", moment.unix(dt).format("MMM Do YYYY"))
 
-        // $("#forecast").prepend(forecastDiv);
+        var forecastDTOut = $("<p>").text("Date: " + moment.unix(dt).format("MMM Do YYYY"));
+        var forecastTempOut = $("<p>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
+        var forecastHumOut = $("<p>").text("Humidity: " + forecastHum + "%");
+        forecastDiv.append(forecastDTOut);
+        forecastDiv.append(forecastTempOut);
+        forecastDiv.append(forecastHumOut);
+
+        $("#forecast").append(forecastDiv);
         }
-    })
-}
 
+        var uvi = forecastData.daily[0].uvi;
+        var uviOut = $("<div>").text("UVI: " + uvi);
+        weatherDiv.append(uviOut);
+        $("#current-weather").prepend(weatherDiv);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-})
+    })})}})
