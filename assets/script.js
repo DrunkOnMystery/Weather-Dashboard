@@ -12,7 +12,6 @@ $(document).ready(function () {
 
     console.log(citySearch);
     currentWeather(citySearch);
-    // forecast(citySearch);
 
 })
 
@@ -50,12 +49,6 @@ function currentWeather(cityName) {
         weatherDiv.append(windOutput);
     
 
-        
-
-//     })
-// }
-
-// function forecast(cityName) {
     $.ajax({
         method: "GET",
         url: "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLat + "&lon=" + cityLon + "&exclude=current,minutely,hourly,alerts&appid=b5f7425c4176b3da6c51c8c289b206a6"
@@ -101,20 +94,9 @@ function currentWeather(cityName) {
 
         $("#search-column").prepend(cityButton);
         $(cityButton).click(function () {
-            alert("You clicked a button");
             currentWeather(cityNameEl);
         })
     })})}})
 
-    
 
-    
-    
-    // function searchAgain(cityNameEl){
-
-    //     searchAgain.preventDefault();
-    //     console.log(cityNameEl);
-    //     currentWeather(cityNameEl);
-        
-    // }
     

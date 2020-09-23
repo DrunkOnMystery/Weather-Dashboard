@@ -27,6 +27,7 @@ h1 {
     margin: 10px;
     padding: 0px;
     display: inline-block;
+    width: 30%;
 }
 
 .card-container {
@@ -34,7 +35,7 @@ h1 {
     margin: auto 0;
     display: flex;
     justify-content: center;
-    overflow: scroll;
+
     text-align: center;
   }
 
@@ -42,4 +43,5 @@ h1 {
       text-align: center;
       padding: 5px;
       line-height: 1.5;
+      width: auto;
   }
