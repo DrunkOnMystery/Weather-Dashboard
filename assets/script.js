@@ -1,9 +1,12 @@
 var cityLat = "";
 var cityLon = "";
+var searches = [];
+var cityButton;
+var cityNameEl;
 $(document).ready(function () {
 
-$("#weather-btn").on("click", function(event) {
-    event.preventDefault();
+    $("#weather-btn").on("click", function(event) {
+        event.preventDefault();
 
     var citySearch = $("#weather-input").val().trim();
 
@@ -22,7 +25,7 @@ function currentWeather(cityName) {
     })
 
     .then(function(data){
-        $("current-weather").empty();
+        $("#current-weather").empty();
         console.log(data);
         var weatherDiv = $("<div>");
         weatherDiv.addClass("card-body")
@@ -60,7 +63,7 @@ function currentWeather(cityName) {
 
     .then(function(forecastData){
         console.log(forecastData);
-        $("forecast").empty();
+        $("#forecast").empty();
 
         for (i=0; i < 5; i++) {
         var forecastDiv = $("<div>");
@@ -92,4 +95,26 @@ function currentWeather(cityName) {
         weatherCardDiv.append(weatherDiv);
         $("#current-weather").prepend(weatherCardDiv);
 
+        searches.push(cityNameEl);
+        cityButton = $("<button>");
+        cityButton.text(cityNameEl);
+
+        $("#search-column").prepend(cityButton);
+        $(cityButton).click(function () {
+            alert("You clicked a button");
+            currentWeather(cityNameEl);
+        })
     })})}})
+
+    
+
+    
+    
+    // function searchAgain(cityNameEl){
+
+    //     searchAgain.preventDefault();
+    //     console.log(cityNameEl);
+    //     currentWeather(cityNameEl);
+        
+    // }
+    
