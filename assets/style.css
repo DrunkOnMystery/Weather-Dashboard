@@ -6,12 +6,9 @@ h1 {
 }
 
 #weather-input {
-    float: right;
+    float: left;
 }
 
-#weather-btn {
-    float: right;
-}
 
 .col-4 {
     margin: 30px;
