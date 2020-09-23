@@ -12,28 +12,36 @@ h1 {
 
 .col-4 {
     margin: 30px;
-    padding: 20px;
+
 }
 
 .col-8 {
     margin: 30px;
-    padding: 20px;
 }
 
 .card {
+
+    display: inline-block;
+    width: 60%;
+    overflow: auto;
+}
+
+.card2 {
     margin: 10px;
     padding: 0px;
     display: inline-block;
-    width: 30%;
-    overflow: auto;
+    min-width: 200px;
+    height: 250px;
+}
+
+.card3 {
+    width: auto;
 }
 
 .card-container {
     width: 100%;
     margin: auto 0;
     display: flex;
-    justify-content: center;
-    overflow: auto;
     text-align: center;
   }
 
@@ -41,7 +49,7 @@ h1 {
       text-align: center;
       padding: 5px;
       line-height: 1.5;
-      width: auto;
+      width: 100%;
       overflow: auto;
   }
 
@@ -59,4 +67,12 @@ h1 {
 
 .background-color-yellow {
     background-color: yellow;
+}
+
+#current-weather {
+    justify-content: center;
+}
+
+#forecast {
+    overflow: scroll;
 }

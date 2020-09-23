@@ -47,9 +47,9 @@ function currentWeather(cityName) {
         cityLon = data.coord.lon;
 
 //Creating output variables for the three key factors being pulled from this API       
-        var tempOutput = $("<h6>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0" + "F");
-        var humOutput = $("<h6>").text("Humidity: " + humidity + "%");
-        var windOutput = $("<h6>").text("Wind: " + wind.speed + "mph at " + wind.deg + " degrees.");
+        var tempOutput = $("<h4>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0" + "F");
+        var humOutput = $("<h4>").text("Humidity: " + humidity + "%");
+        var windOutput = $("<h4>").text("Wind: " + wind.speed + "mph at " + wind.deg + " degrees.");
         
 //Appending those new outputs to the weatherDiv
         weatherDiv.append(tempOutput);
@@ -73,7 +73,7 @@ function currentWeather(cityName) {
         var forecastDiv = $("<div>");
         forecastDiv.addClass("card-body");
         var cardDiv = $("<div>");
-        cardDiv.addClass("card");
+        cardDiv.addClass("card2 card");
 
 //Grab the variables needed for the five day forecast
         var dt = forecastData.daily[i].dt;
@@ -82,9 +82,9 @@ function currentWeather(cityName) {
         console.log("time", moment.unix(dt).format("MMM Do YYYY"))
 
 //Create output variables
-        var forecastDTOut = $("<h6>").text(moment.unix(dt).format("MMM Do YYYY"));
-        var forecastTempOut = $("<h6>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
-        var forecastHumOut = $("<h6>").text("Humidity: " + forecastHum + "%");
+        var forecastDTOut = $("<h5>").text(moment.unix(dt).format("MMM Do YYYY"));
+        var forecastTempOut = $("<h5>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
+        var forecastHumOut = $("<h5>").text("Humidity: " + forecastHum + "%");
  
 //Append output variables to the forecast Div        
         forecastDiv.append(forecastDTOut);
@@ -99,8 +99,8 @@ function currentWeather(cityName) {
 //Grab the uvi variable from the second ajax that is needed for today's weather
         var uvi = forecastData.daily[0].uvi;
         var uviDiv = $("<div>");
-        uviDiv.addClass("card");
-        var uviOut = $("<h6>").text("UVI: " + uvi);
+        uviDiv.addClass("card3");
+        var uviOut = $("<h4>").text("UVI: " + uvi);
 
 //Append the UVI into the WeatherDiv
         uviDiv.append(uviOut);
