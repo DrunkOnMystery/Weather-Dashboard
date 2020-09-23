@@ -8,6 +8,9 @@ var cityNameEl;
 
 //Set function for opening of page
 $(document).ready(function () {
+   storedCityNameEl=localStorage.getItem("storedCityName");
+   console.log(storedCityNameEl);
+   currentWeather(storedCityNameEl);
 
 //Set onclick actions for weather button
     $("#weather-btn").on("click", function(event) {
@@ -40,7 +43,8 @@ function currentWeather(cityName) {
         weatherCardDiv.addClass("card");
 
 //Creating temporary variables for the application
-        var temp =data.main.temp;
+        var temp = data.main.temp;
+        var iconCode = data.weather[0].icon;
         var humidity = data.main.humidity;
         var wind = data.wind;
         cityLat = data.coord.lat;
@@ -48,10 +52,16 @@ function currentWeather(cityName) {
 
 //Creating output variables for the three key factors being pulled from this API       
         var tempOutput = $("<h4>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0" + "F");
+        var iconDiv = $("<div>");
+        var icon = $("<img>");
+        var iconURL = ("http://openweathermap.org/img/w/" + iconCode + ".png");
+        $(icon).attr('src', iconURL);
         var humOutput = $("<h4>").text("Humidity: " + humidity + "%");
         var windOutput = $("<h4>").text("Wind: " + wind.speed + "mph at " + wind.deg + " degrees.");
         
 //Appending those new outputs to the weatherDiv
+        iconDiv.append(icon);
+        weatherDiv.append(iconDiv);
         weatherDiv.append(tempOutput);
         weatherDiv.append(humOutput);
         weatherDiv.append(windOutput);
@@ -76,17 +86,24 @@ function currentWeather(cityName) {
         cardDiv.addClass("card2 card");
 
 //Grab the variables needed for the five day forecast
+        var forecastIconCode = forecastData.daily[0].weather[0].icon;
         var dt = forecastData.daily[i].dt;
         var forecastTemp =forecastData.daily[i].temp.day;
         var forecastHum = forecastData.daily[i].humidity;
         console.log("time", moment.unix(dt).format("MMM Do YYYY"))
 
 //Create output variables
+        var forecastIconDiv = $("<div>");
+        var forecastIcon = $("<img>");
+        var forecastIconURL = ("http://openweathermap.org/img/w/" + forecastIconCode + ".png");
+        $(forecastIcon).attr('src', forecastIconURL);
         var forecastDTOut = $("<h5>").text(moment.unix(dt).format("MMM Do YYYY"));
         var forecastTempOut = $("<h5>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
         var forecastHumOut = $("<h5>").text("Humidity: " + forecastHum + "%");
  
-//Append output variables to the forecast Div        
+//Append output variables to the forecast Div  
+        forecastIconDiv.append(forecastIcon);
+        forecastDiv.append(forecastIconDiv);
         forecastDiv.append(forecastDTOut);
         forecastDiv.append(forecastTempOut);
         forecastDiv.append(forecastHumOut);
@@ -141,7 +158,9 @@ function currentWeather(cityName) {
             searchAgain.preventDefault();
             currentWeather(cityNameEl);
         })
+        localStorage.setItem("storedCityName", cityNameEl);
     })})}})
 
 
-    
+
+  
