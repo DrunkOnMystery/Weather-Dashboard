@@ -93,7 +93,8 @@ function currentWeather(cityName) {
         cityButton.text(cityNameEl);
 
         $("#search-column").prepend(cityButton);
-        $(cityButton).click(function () {
+        $(cityButton).on("click", function (searchAgain) {
+            searchAgain.preventDefault();
             currentWeather(cityNameEl);
         })
     })})}})
