@@ -99,7 +99,7 @@ function currentWeather(cityName) {
 //Grab the uvi variable from the second ajax that is needed for today's weather
         var uvi = forecastData.daily[0].uvi;
         var uviDiv = $("<div>");
-        uviDiv.addClass("card3");
+        uviDiv.addClass("card3 card");
         var uviOut = $("<h4>").text("UVI: " + uvi);
 
 //Append the UVI into the WeatherDiv
