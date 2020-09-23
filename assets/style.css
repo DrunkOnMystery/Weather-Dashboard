@@ -28,6 +28,7 @@ h1 {
     padding: 0px;
     display: inline-block;
     width: 30%;
+    overflow: auto;
 }
 
 .card-container {
@@ -35,13 +36,30 @@ h1 {
     margin: auto 0;
     display: flex;
     justify-content: center;
-
+    overflow: auto;
     text-align: center;
   }
 
-  .card-body {
+.card-body {
       text-align: center;
       padding: 5px;
       line-height: 1.5;
       width: auto;
+      overflow: auto;
   }
+
+.background-color-red {
+    background-color: red;
+}
+
+.background-color-green {
+    background-color:green;
+}
+
+.background-color-orange {
+    background-color: orange;
+}
+
+.background-color-yellow {
+    background-color: yellow;
+}
