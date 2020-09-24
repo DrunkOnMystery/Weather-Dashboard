@@ -5,6 +5,12 @@ h1 {
     font-family: 'Times New Roman', Times, serif;
 }
 
+h5 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 #weather-input {
     float: left;
 }
@@ -24,6 +30,7 @@ h1 {
     display: inline-block;
     width: 60%;
     overflow: auto;
+
 }
 
 .card2 {
@@ -32,6 +39,7 @@ h1 {
     display: inline-block;
     min-width: 200px;
     height: 250px;
+    background-color: rgb(90, 205, 176);
 }
 
 .card3 {
@@ -77,5 +85,9 @@ h1 {
 }
 
 #forecast {
+    overflow: auto;
+}
 
+.city-button {
+    width: 100%;
 }

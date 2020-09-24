@@ -101,10 +101,10 @@ function currentWeather(cityName) {
         var forecastTempOut = $("<h5>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
         var forecastHumOut = $("<h5>").text("Humidity: " + forecastHum + "%");
  
-//Append output variables to the forecast Div  
+//Append output variables to the forecast Div
+        forecastDiv.append(forecastDTOut);
         forecastIconDiv.append(forecastIcon);
         forecastDiv.append(forecastIconDiv);
-        forecastDiv.append(forecastDTOut);
         forecastDiv.append(forecastTempOut);
         forecastDiv.append(forecastHumOut);
 
@@ -150,7 +150,8 @@ function currentWeather(cityName) {
 //Creating a new button with each search with the city name as its text        
         searches.push(cityNameEl);
         cityButton = $("<button>");
-        cityButton.text(cityNameEl);        
+        cityButton.text(cityNameEl);
+        cityButton.addClass("city-button");        
         $("#search-column").prepend(cityButton);
 
 //Establish actions to take if one of the newly created city buttons is pressed        
