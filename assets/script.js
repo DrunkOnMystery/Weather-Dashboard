@@ -54,7 +54,7 @@ function currentWeather(cityName) {
         var tempOutput = $("<h4>").text("Temperature: " + Math.floor((temp - 273.15) * 9/5 + 32) + "\xB0" + "F");
         var iconDiv = $("<div>");
         var icon = $("<img>");
-        var iconURL = ("http://openweathermap.org/img/w/" + iconCode + ".png");
+        var iconURL = ("https://openweathermap.org/img/w/" + iconCode + ".png");
         $(icon).attr('src', iconURL);
         var humOutput = $("<h4>").text("Humidity: " + humidity + "%");
         var windOutput = $("<h4>").text("Wind: " + wind.speed + "mph at " + wind.deg + " degrees.");
@@ -95,7 +95,7 @@ function currentWeather(cityName) {
 //Create output variables
         var forecastIconDiv = $("<div>");
         var forecastIcon = $("<img>");
-        var forecastIconURL = ("http://openweathermap.org/img/w/" + forecastIconCode + ".png");
+        var forecastIconURL = ("https://openweathermap.org/img/w/" + forecastIconCode + ".png");
         $(forecastIcon).attr('src', forecastIconURL);
         var forecastDTOut = $("<h5>").text(moment.unix(dt).format("MMM Do YYYY"));
         var forecastTempOut = $("<h5>").text("Temperature: " + Math.floor((forecastTemp-273.15) * 9/5 +32) + "\xB0" + "F");
